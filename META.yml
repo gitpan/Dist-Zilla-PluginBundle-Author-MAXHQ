@@ -1,0 +1,23 @@
+---
+abstract: 'Dist::Zilla like MAXHQ when you build your dists'
+author:
+  - 'Jens Berthold <jens.berthold@jebecs.de>'
+build_requires:
+  Module::Build: 0.3601
+configure_requires:
+  Module::Build: 0.3601
+dynamic_config: 0
+generated_by: 'Dist::Zilla version 5.006, CPAN::Meta::Converter version 2.120921'
+license: perl
+meta-spec:
+  url: http://module-build.sourceforge.net/META-spec-v1.4.html
+  version: 1.4
+name: Dist-Zilla-PluginBundle-Author-MAXHQ
+requires:
+  Dist::Zilla: 5.006
+  File::Find::Rule: 0.33
+  Moose: 2.1005
+  Test::Inline: 2.213
+  parent: 0.228
+  perl: v5.8.8
+version: 0.0100017
