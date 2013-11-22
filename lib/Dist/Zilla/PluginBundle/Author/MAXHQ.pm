@@ -1,23 +1,27 @@
+use strict;
 package Dist::Zilla::PluginBundle::Author::MAXHQ;
 # ABSTRACT: Dist::Zilla like MAXHQ when you build your dists
-our $VERSION = '0.0100017'; # VERSION
+our $VERSION = '0.0100021'; # VERSION
 
-=encoding UTF-8
- 
-=head1 SYNOPSIS
- 
-	# dist.ini
-	[@Author::MAXHQ]
- 
-=cut 
+
 use Moose;
+
+# choose the easy way of configuring a plugin bundle
 with 'Dist::Zilla::Role::PluginBundle::Easy';
- 
+
+# add all plugins configured below to the prerequisites of this pluginbundle module
+# (requires setting "bundledeps_phase = runtime" in this module's dist.ini)
+with 'Dist::Zilla::Role::BundleDeps';
+
 sub configure {
     my $self = shift;
  
     $self->add_plugins(
-
+		#
+		# Before build
+		#
+        [ 'PromptIfStale' => 'build' => { phase => 'build', module => [ blessed($self) ] } ],
+        
 		#
 		# Collect files, calculate dependencies...
 		#
@@ -102,3 +106,51 @@ sub configure {
 __PACKAGE__->meta->make_immutable;
 no Moose;
 1;
+
+__END__
+
+=pod
+
+=head1 NAME
+
+Dist::Zilla::PluginBundle::Author::MAXHQ - Dist::Zilla like MAXHQ when you build your dists
+
+=head1 VERSION
+
+version 0.0100021
+
+=head1 SYNOPSIS
+
+	# dist.ini
+	[@Author::MAXHQ]
+
+=head1 EXTENDS
+
+=over 4
+
+=item * L<Moose::Object>
+
+=back
+
+=head1 METHODS
+
+=head2 configure
+
+Required by role L<Dist::Zilla::Role::PluginBundle::Easy>.
+
+Configures the plugins of this bundle.
+
+=encoding UTF-8
+
+=head1 AUTHOR
+
+Jens Berthold <jens.berthold@jebecs.de>
+
+=head1 COPYRIGHT AND LICENSE
+
+This software is copyright (c) 2013 by Jens Berthold.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
+
+=cut

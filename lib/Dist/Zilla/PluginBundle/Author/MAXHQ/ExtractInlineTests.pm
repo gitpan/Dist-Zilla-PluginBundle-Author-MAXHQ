@@ -1,35 +1,10 @@
+use strict;
 package Dist::Zilla::PluginBundle::Author::MAXHQ::ExtractInlineTests;
 # ABSTRACT: Extract inline tests from POD sections in the modules
-our $VERSION = '0.0100017'; # VERSION
+our $VERSION = '0.0100021'; # VERSION
 
-=utf8
 
-=head1 DESCRIPTION
-
-The code of this Dist::Zilla file gatherer module is taken from
-L<https://github.com/moose/moose/blob/master/inc/ExtractInlineTests.pm>.
-
-This module scans all files for inline tests in POD sections, like e.g.:
-
-	=begin testing
-
-	use Test::Exception;
-
-	my $list;
-
-	lives_ok {
-		$list = My::AddressRange->list_from_range('10.2.3.1', '10.2.3.5')
-	} "list_from_range() doesn't die with correct input for a list of IPs";
-
-	dies_ok {
-		My::AddressRange->list_from_range('10.2.3.A', '10.2.3.5')
-	} "list_from_range() complains about invalid address";
-
-	=end testing
-	
-=cut
 use Moose;
-
 with 'Dist::Zilla::Role::FileGatherer';
 
 use File::Basename qw( basename );
@@ -135,3 +110,68 @@ sub gather_files {
 }
 
 1;
+
+__END__
+
+=pod
+
+=head1 NAME
+
+Dist::Zilla::PluginBundle::Author::MAXHQ::ExtractInlineTests - Extract inline tests from POD sections in the modules
+
+=head1 VERSION
+
+version 0.0100021
+
+=head1 DESCRIPTION
+
+The code of this Dist::Zilla file gatherer module is taken from
+L<https://github.com/moose/moose/blob/master/inc/ExtractInlineTests.pm>.
+
+This module scans all files for inline tests in POD sections, like e.g.:
+
+	=begin testing
+
+	use Test::Exception;
+
+	my $list;
+
+	lives_ok {
+		$list = My::AddressRange->list_from_range('10.2.3.1', '10.2.3.5')
+	} "list_from_range() doesn't die with correct input for a list of IPs";
+
+	dies_ok {
+		My::AddressRange->list_from_range('10.2.3.A', '10.2.3.5')
+	} "list_from_range() complains about invalid address";
+
+	=end testing
+
+=head1 EXTENDS
+
+=over 4
+
+=item * L<Moose::Object>
+
+=back
+
+=head1 METHODS
+
+=head2 gather_files
+
+Required by role L<Dist::Zilla::Role::FileGatherer>.
+
+Searches for inline test code in POD sections and creates in-memory test files
+from them.
+
+=head1 AUTHOR
+
+Jens Berthold <jens.berthold@jebecs.de>
+
+=head1 COPYRIGHT AND LICENSE
+
+This software is copyright (c) 2013 by Jens Berthold.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
+
+=cut

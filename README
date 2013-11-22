@@ -1,4 +1,29 @@
+NAME
+    Dist::Zilla::PluginBundle::Author::MAXHQ - Dist::Zilla like MAXHQ when
+    you build your dists
+
+VERSION
+    version 0.0100021
+
 SYNOPSIS
             # dist.ini
             [@Author::MAXHQ]
+
+EXTENDS
+    *   Moose::Object
+
+METHODS
+  configure
+    Required by role Dist::Zilla::Role::PluginBundle::Easy.
+
+    Configures the plugins of this bundle.
+
+AUTHOR
+    Jens Berthold <jens.berthold@jebecs.de>
+
+COPYRIGHT AND LICENSE
+    This software is copyright (c) 2013 by Jens Berthold.
+
+    This is free software; you can redistribute it and/or modify it under
+    the same terms as the Perl 5 programming language system itself.
 
