@@ -1,7 +1,7 @@
 use strict;
 package Dist::Zilla::PluginBundle::Author::MAXHQ;
 # ABSTRACT: Dist::Zilla like MAXHQ when you build your dists
-our $VERSION = '0.0110000'; # VERSION
+our $VERSION = '0.011001'; # VERSION
 
 
 use Moose;
@@ -124,7 +124,7 @@ Dist::Zilla::PluginBundle::Author::MAXHQ - Dist::Zilla like MAXHQ when you build
 
 =head1 VERSION
 
-version 0.0110000
+version 0.011001
 
 =head1 SYNOPSIS
 

@@ -45,4 +45,4 @@ requires:
   Moose: 2.1005
   Test::Inline: 2.213
   perl: v5.8.8
-version: 0.0110000
+version: 0.011001
