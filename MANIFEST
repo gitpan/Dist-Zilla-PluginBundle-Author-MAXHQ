@@ -1,13 +1,12 @@
 Build.PL
+Changes
 LICENSE
 MANIFEST
 META.yml
 README
 dist.ini
-doc/Dist-Zilla-PluginBundle-Author-MAXHQ-ExtractInlineTests.html
 doc/Dist-Zilla-PluginBundle-Author-MAXHQ.html
 lib/Dist/Zilla/PluginBundle/Author/MAXHQ.pm
-lib/Dist/Zilla/PluginBundle/Author/MAXHQ/ExtractInlineTests.pm
 perlcritic.rc
 t/author-critic.t
 t/release-pod-coverage.t

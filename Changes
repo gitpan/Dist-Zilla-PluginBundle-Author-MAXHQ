@@ -1,0 +1,14 @@
+Revision history for perl module Dist::Zilla::PluginBundle::Author::MAXHQ
+
+0.0110000 2013-11-26
+ - Now using plugin NextVersion::Semantic for this module
+ - Replaced code to extract inline tests with reference to new plugin
+   Dist::Zilla::Plugin::Test::Inline
+ - Added this Changes file
+
+0.0100021 2013-11-22
+ - Added documentation
+
+0.0100017 2013-11-22
+ - Initial release
+

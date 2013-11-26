@@ -1,7 +1,7 @@
 use strict;
 package Dist::Zilla::PluginBundle::Author::MAXHQ;
 # ABSTRACT: Dist::Zilla like MAXHQ when you build your dists
-our $VERSION = '0.0100021'; # VERSION
+our $VERSION = '0.0110000'; # VERSION
 
 
 use Moose;
@@ -60,7 +60,14 @@ sub configure {
 		#
 		# Release
 		#
+
+		# Replace variable {{$NEXT}} in "Changes" file with new version and date
+		['NextRelease' => { format => '%-9v %{yyyy-MM-dd}d' }],
+		
+		# Test release
 		'TestRelease',
+		
+		# ask for confirmation
 		'ConfirmRelease',
 
 		# Like calling "dzil clean" after release to remove builds
@@ -85,7 +92,7 @@ sub configure {
 		'ReadmeAnyFromPod',
 		
 		# extract inline test code from modules
-		'=Dist::Zilla::PluginBundle::Author::MAXHQ::ExtractInlineTests',
+		'Test::Inline',
 		
 		# auto-generate various tests
 		'ExtraTests',
@@ -117,7 +124,7 @@ Dist::Zilla::PluginBundle::Author::MAXHQ - Dist::Zilla like MAXHQ when you build
 
 =head1 VERSION
 
-version 0.0100021
+version 0.0110000
 
 =head1 SYNOPSIS
 
