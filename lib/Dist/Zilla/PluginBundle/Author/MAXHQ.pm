@@ -1,7 +1,7 @@
 use strict;
 package Dist::Zilla::PluginBundle::Author::MAXHQ;
 # ABSTRACT: Dist::Zilla like MAXHQ when you build your dists
-our $VERSION = '0.011003'; # VERSION
+our $VERSION = '0.011004'; # VERSION
 
 
 use Moose;
@@ -40,6 +40,11 @@ sub configure {
 		# Conversion and replacements
 		#
 		'OurPkgVersion',               # replaces "# VERSION" by "our $VERSION = '...';"
+		['NextRelease' => {            # replace {{$NEXT}} in "Changes" file with new version and date
+			format => '%-9v %{yyyy-MM-dd}d', #  (MUST be included before NextVersion::Semantic)
+		}],
+		'PreviousVersion::Changelog',  # fetch previous version from changelog
+		                               # alternatively run: V=0.00100 dzil release
 		['NextVersion::Semantic' => {  # generate next version based on type of changes
 			major => '*NEW FEATURES, *API CHANGES',
 			minor => '+ENHANCEMENTS',
@@ -48,9 +53,6 @@ sub configure {
 		# Please note that * and ! are mainly there to enforce correct ordering
 		# as CPAN::Changes::Release (used in NextVersion::Semantic) just sorts
 		# groups alphabetically
-		
-		'PreviousVersion::Changelog',  # fetch previous version from changelog
-		                               # alternatively run: V=0.00100 dzil release
 		
 		# weave your Pod together from configuration and Dist::Zilla
 		# (turns "# ABSTRACT" into POD, processes =method and short lists etc.)
@@ -98,9 +100,6 @@ sub configure {
 		#
 		# Release
 		#
-		['NextRelease' => {            # replace {{$NEXT}} in "Changes" file with new version and date
-			format => '%-9v %{yyyy-MM-dd}d',
-		}],
 		'TestRelease',                 # test before releasing
 		'ConfirmRelease',              # ask for confirmation before releasing
 		'Clean',                       # Like "dzil clean" after release
@@ -121,7 +120,7 @@ Dist::Zilla::PluginBundle::Author::MAXHQ - Dist::Zilla like MAXHQ when you build
 
 =head1 VERSION
 
-version 0.011003
+version 0.011004
 
 =head1 SYNOPSIS
 

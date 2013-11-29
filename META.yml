@@ -45,4 +45,4 @@ requires:
   Dist::Zilla::Role::PluginBundle::Easy: 5.006
   Moose: 2.1005
   perl: v5.8.8
-version: 0.011003
+version: 0.011004
