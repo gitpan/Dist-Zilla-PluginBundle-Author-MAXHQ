@@ -1,7 +1,7 @@
 use strict;
 package Dist::Zilla::PluginBundle::Author::MAXHQ;
 # ABSTRACT: Dist::Zilla like MAXHQ when you build your dists
-our $VERSION = '0.011002'; # VERSION
+our $VERSION = '0.011003'; # VERSION
 
 
 use Moose;
@@ -41,10 +41,14 @@ sub configure {
 		#
 		'OurPkgVersion',               # replaces "# VERSION" by "our $VERSION = '...';"
 		['NextVersion::Semantic' => {  # generate next version based on type of changes
-			major => 'NEW FEATURES, API CHANGES',
-			minor => 'ENHANCEMENTS',
+			major => '*NEW FEATURES, *API CHANGES',
+			minor => '+ENHANCEMENTS',
 			revision => 'REVISION, BUG FIXES, DOCUMENTATION',
 		}],
+		# Please note that * and ! are mainly there to enforce correct ordering
+		# as CPAN::Changes::Release (used in NextVersion::Semantic) just sorts
+		# groups alphabetically
+		
 		'PreviousVersion::Changelog',  # fetch previous version from changelog
 		                               # alternatively run: V=0.00100 dzil release
 		
@@ -117,7 +121,7 @@ Dist::Zilla::PluginBundle::Author::MAXHQ - Dist::Zilla like MAXHQ when you build
 
 =head1 VERSION
 
-version 0.011002
+version 0.011003
 
 =head1 SYNOPSIS
 
