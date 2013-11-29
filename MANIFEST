@@ -4,11 +4,9 @@ LICENSE
 MANIFEST
 META.yml
 README
-dist.ini
 doc/Dist-Zilla-PluginBundle-Author-MAXHQ.html
 lib/Dist/Zilla/PluginBundle/Author/MAXHQ.pm
 perlcritic.rc
 t/author-critic.t
 t/release-pod-coverage.t
 t/release-pod-syntax.t
-weaver.ini

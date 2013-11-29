@@ -1,9 +1,15 @@
 Revision history for perl module Dist::Zilla::PluginBundle::Author::MAXHQ
 
-0.011001  2013-11-26
+0.011002  2013-11-29
+ [REVISION]
+ - Replaced plugin LatestPrereqs with Prereqs::MatchInstalled::All
+ - Integrated NextVersion::Semantic and PreviousVersion::Changelog
+ - Some optical cleanup
+
+0.011001 2013-11-26
  [ENHANCEMENTS]
  - Shortened version number
- 
+
 0.0110000 2013-11-26
  - Now using plugin NextVersion::Semantic for this module
  - Replaced code to extract inline tests with reference to new plugin
