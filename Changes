@@ -1,5 +1,10 @@
 Revision history for perl module Dist::Zilla::PluginBundle::Author::MAXHQ
 
+0.012000 2014-01-07
+ [+ENHANCEMENTS]
+ - Added bundle option GatherDir.exclude_match where excludes can be
+   specified
+
 0.011004 2013-11-29
  [BUG FIXES]
  - Placed NextRelease before NextVersion::Semantic, otherwise Changes file

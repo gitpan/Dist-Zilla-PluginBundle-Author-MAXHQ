@@ -1,10 +1,11 @@
 use strict;
 package Dist::Zilla::PluginBundle::Author::MAXHQ;
 # ABSTRACT: Dist::Zilla like MAXHQ when you build your dists
-our $VERSION = '0.011004'; # VERSION
+our $VERSION = '0.012000'; # VERSION
 
 
 use Moose;
+use Getopt::Long qw(GetOptionsFromArray);
 
 # choose the easy way of configuring a plugin bundle
 with 'Dist::Zilla::Role::PluginBundle::Easy';
@@ -13,19 +14,29 @@ with 'Dist::Zilla::Role::PluginBundle::Easy';
 # (requires setting "bundledeps_phase = runtime" in this module's dist.ini)
 with 'Dist::Zilla::Role::BundleDeps';
 
+sub mvp_multivalue_args { return qw(GatherDir.exclude_match) }
+
 sub configure {
     my $self = shift;
+	
+	# build this array by merging...
+	my @exclude_matches = (
+		# ...the parameter (or an empty ref)
+		@{ $self->payload->{'GatherDir.exclude_match'} || [] },
+		# ...with the default options
+		qw(
+			^[^\.]+\.ini$
+			^[^\.]+\.html$
+			^[^\.]+\.tar\.gz$
+		)
+	);
  
     $self->add_plugins(
 		#
 		# Files included
 		#
 		['GatherDir' => {              # skip files on top level
-			exclude_match => [
-				'^[^\.]+\.ini$',
-				'^[^\.]+\.html$',
-				'^[^\.]+\.tar\.gz$',
-			]
+			exclude_match => \@exclude_matches,
 		}],
 		'PruneCruft',                  # prune stuff you probably don't want
 		
@@ -120,12 +131,13 @@ Dist::Zilla::PluginBundle::Author::MAXHQ - Dist::Zilla like MAXHQ when you build
 
 =head1 VERSION
 
-version 0.011004
+version 0.012000
 
 =head1 SYNOPSIS
 
 	# dist.ini
 	[@Author::MAXHQ]
+	GatherDir.exclude_match = ^[^\/\.]+\.txt$
 
 =head1 EXTENDS
 
@@ -136,6 +148,14 @@ version 0.011004
 =back
 
 =head1 METHODS
+
+=head2 mvp_multivalue_args
+
+"If you want a configuration option that takes more than one value, you'll need
+to mark it as multivalue arg by having its name returned by
+C<mvp_multivalue_args>."
+
+Queried by L<Dist::Zilla>.
 
 =head2 configure
 
@@ -151,7 +171,7 @@ Jens Berthold <jens.berthold@jebecs.de>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2013 by Jens Berthold.
+This software is copyright (c) 2014 by Jens Berthold.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.

@@ -3,16 +3,24 @@ NAME
     you build your dists
 
 VERSION
-    version 0.011004
+    version 0.012000
 
 SYNOPSIS
             # dist.ini
             [@Author::MAXHQ]
+            GatherDir.exclude_match = ^[^\/\.]+\.txt$
 
 EXTENDS
     *   Moose::Object
 
 METHODS
+  mvp_multivalue_args
+    "If you want a configuration option that takes more than one value,
+    you'll need to mark it as multivalue arg by having its name returned by
+    "mvp_multivalue_args"."
+
+    Queried by Dist::Zilla.
+
   configure
     Required by role Dist::Zilla::Role::PluginBundle::Easy.
 
@@ -22,7 +30,7 @@ AUTHOR
     Jens Berthold <jens.berthold@jebecs.de>
 
 COPYRIGHT AND LICENSE
-    This software is copyright (c) 2013 by Jens Berthold.
+    This software is copyright (c) 2014 by Jens Berthold.
 
     This is free software; you can redistribute it and/or modify it under
     the same terms as the Perl 5 programming language system itself.
