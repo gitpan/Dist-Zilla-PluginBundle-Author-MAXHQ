@@ -1,5 +1,17 @@
 Revision history for perl module Dist::Zilla::PluginBundle::Author::MAXHQ
 
+1.000000 2014-02-28
+ [*NEW FEATURES]
+ - new Pod::Weaver plugin bundle @MAXHQ
+ - include Pod::Weaver plugin bundle @MAXHQ in Dist::Zilla plugin bundle
+   @MAXHQ
+
+ [REVISION]
+ - Removed unneccessary "use Getopt::Long"
+ - Removed plugin "Clean"
+ - Replaced plugin "OurPkgVersion" by "PkgVersion" (as the latter now deals
+   with line numbers correctly)
+
 0.012000 2014-01-07
  [+ENHANCEMENTS]
  - Added bundle option GatherDir.exclude_match where excludes can be

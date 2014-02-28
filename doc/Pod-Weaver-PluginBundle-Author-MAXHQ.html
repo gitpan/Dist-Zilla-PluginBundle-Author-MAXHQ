@@ -1,4 +1,4 @@
-<html><head><title>Dist::Zilla::PluginBundle::Author::MAXHQ</title>
+<html><head><title>Pod::Weaver::PluginBundle::Author::MAXHQ</title>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" >
 
 <style type="text/css">
@@ -112,10 +112,10 @@ DT {
   <li class='indexItem indexItem1'><a href='#NAME'>NAME</a>
   <li class='indexItem indexItem1'><a href='#VERSION'>VERSION</a>
   <li class='indexItem indexItem1'><a href='#SYNOPSIS'>SYNOPSIS</a>
+  <li class='indexItem indexItem1'><a href='#OVERVIEW'>OVERVIEW</a>
   <li class='indexItem indexItem1'><a href='#METHODS'>METHODS</a>
   <ul   class='indexList indexList2'>
-    <li class='indexItem indexItem2'><a href='#mvp_multivalue_args'>mvp_multivalue_args</a>
-    <li class='indexItem indexItem2'><a href='#configure'>configure</a>
+    <li class='indexItem indexItem2'><a href='#mvp_bundle_config'>mvp_bundle_config</a>
   </ul>
   <li class='indexItem indexItem1'><a href='#AUTHOR'>AUTHOR</a>
   <li class='indexItem indexItem1'><a href='#COPYRIGHT_AND_LICENSE'>COPYRIGHT AND LICENSE</a>
@@ -126,7 +126,7 @@ DT {
 name="NAME"
 >NAME</a></h1>
 
-<p>Dist::Zilla::PluginBundle::Author::MAXHQ - MAXHQ&#39;s default Dist::Zilla configuration</p>
+<p>Pod::Weaver::PluginBundle::Author::MAXHQ - MAXHQ&#39;s default Pod::Weaver configuration</p>
 
 <h1><a class='u' href='#___top' title='click to go to top of document'
 name="VERSION"
@@ -138,32 +138,97 @@ name="VERSION"
 name="SYNOPSIS"
 >SYNOPSIS</a></h1>
 
-<p>Put following into your <code>dist.ini</code>:</p>
+<p>Put the following into your <code>weaver.ini</code>:</p>
 
-<pre>        [@Author::MAXHQ]
-        GatherDir.exclude_match = ^[^\/\.]+\.txt$</pre>
+<pre>        [@Author::MAXHQ]</pre>
+
+<h1><a class='u' href='#___top' title='click to go to top of document'
+name="OVERVIEW"
+>OVERVIEW</a></h1>
+
+<p>Currently (2014-02-28) this plugin bundle is equivalent to:</p>
+
+<pre>        [@CorePrep]
+        
+        [Name]
+        [Version]
+        
+        ;#
+        ;# prelude
+        ;#
+        [Region  / prelude]
+        
+        [Generic / SYNOPSIS]
+        [Generic / DESCRIPTION]
+        [Generic / OVERVIEW]
+        
+        [Extends]
+        
+        ;#
+        ;# functions etc.
+        ;#
+        [Collect / ATTRIBUTES]
+        command = attr
+
+        [Collect / REQUIRED METHODS]
+        command = requires
+        
+        [Collect / CLASS METHODS]
+        command = class_method
+        
+        [Collect / METHODS]
+        command = method
+        
+        [Collect / MOJOLICIOUS PLUGINS]
+        command = mojo_plugin
+        
+        [Collect / MOJOLICIOUS SHORTCUTS]
+        command = mojo_short
+        
+        [Collect / MOJOLICIOUS CONDITIONS]
+        command = mojo_cond
+        
+        [Collect / MOJOLICIOUS HELPERS]
+        command = mojo_helper
+        
+        
+        [Leftovers]
+        
+        ;#
+        ;# postlude
+        ;#
+        [Region  / postlude]
+        
+        [Authors]
+        [Legal]
+        
+        ;#
+        ;# plugins
+        ;#
+        [-Transformer]
+        transformer = List</pre>
 
 <h1><a class='u' href='#___top' title='click to go to top of document'
 name="METHODS"
 >METHODS</a></h1>
 
 <h2><a class='u' href='#___top' title='click to go to top of document'
-name="mvp_multivalue_args"
->mvp_multivalue_args</a></h2>
+name="mvp_bundle_config"
+>mvp_bundle_config</a></h2>
 
-<p>&#34;If you want a configuration option that takes more than one value, you&#39;ll need to mark it as multivalue arg by having its name returned by <code>mvp_multivalue_args</code>.&#34;</p>
+<p>Returns my <code>Pod::Weaver</code> plugin configuration. Based on <a href="http://search.cpan.org/perldoc?Pod%3A%3AWeaver%3A%3APluginBundle%3A%3ARJBS" class="podlinkpod"
+>Pod::Weaver::PluginBundle::RJBS</a>.</p>
 
-<p>Queried by <a href="http://search.cpan.org/perldoc?Dist%3A%3AZilla" class="podlinkpod"
->Dist::Zilla</a>.</p>
+<p>The return format is a list of ArrayRefs, where each ArrayRef looks like:</p>
 
-<h2><a class='u' href='#___top' title='click to go to top of document'
-name="configure"
->configure</a></h2>
+<pre>        [$name, $package, $payload]</pre>
 
-<p>Required by role <a href="http://search.cpan.org/perldoc?Dist%3A%3AZilla%3A%3ARole%3A%3APluginBundle%3A%3AEasy" class="podlinkpod"
->Dist::Zilla::Role::PluginBundle::Easy</a>.</p>
+<p>(Described in <a href="http://search.cpan.org/perldoc?Config%3A%3AMVP%3A%3AAssembler%3A%3AWithBundles#replace_bundle_with_contents" class="podlinkpod"
+>&#34;replace_bundle_with_contents&#34; in Config::MVP::Assembler::WithBundles</a>)</p>
 
-<p>Configures the plugins of this bundle.</p>
+<p>This method is called by <a href="http://search.cpan.org/perldoc?Pod%3A%3AWeaver" class="podlinkpod"
+>Pod::Weaver</a>, or more specific by <a href="http://search.cpan.org/perldoc?Config%3A%3AMVP%3A%3AAssembler%3A%3AWithBundles#replace_bundle_with_contents" class="podlinkpod"
+>&#34;replace_bundle_with_contents&#34; in Config::MVP::Assembler::WithBundles</a>.</p>
 
 <h1><a class='u' href='#___top' title='click to go to top of document'
 name="AUTHOR"

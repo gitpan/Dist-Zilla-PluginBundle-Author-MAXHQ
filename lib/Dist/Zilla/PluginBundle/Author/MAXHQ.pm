@@ -1,11 +1,19 @@
 use strict;
 package Dist::Zilla::PluginBundle::Author::MAXHQ;
-# ABSTRACT: Dist::Zilla like MAXHQ when you build your dists
-our $VERSION = '0.012000'; # VERSION
-
+# ABSTRACT: MAXHQ's default Dist::Zilla configuration
+$Dist::Zilla::PluginBundle::Author::MAXHQ::VERSION = '1.000000';
+# =encoding UTF-8
+#  
+# =head1 SYNOPSIS
+#  
+# Put following into your C<dist.ini>:
+#
+# 	[@Author::MAXHQ]
+# 	GatherDir.exclude_match = ^[^\/\.]+\.txt$
+#
+# =cut 
 
 use Moose;
-use Getopt::Long qw(GetOptionsFromArray);
 
 # choose the easy way of configuring a plugin bundle
 with 'Dist::Zilla::Role::PluginBundle::Easy';
@@ -14,8 +22,24 @@ with 'Dist::Zilla::Role::PluginBundle::Easy';
 # (requires setting "bundledeps_phase = runtime" in this module's dist.ini)
 with 'Dist::Zilla::Role::BundleDeps';
 
+# =method mvp_multivalue_args
+#
+# "If you want a configuration option that takes more than one value, you'll need
+# to mark it as multivalue arg by having its name returned by
+# C<mvp_multivalue_args>."
+#
+# Queried by L<Dist::Zilla>.
+#
+# =cut
 sub mvp_multivalue_args { return qw(GatherDir.exclude_match) }
 
+# =method configure
+#
+# Required by role L<Dist::Zilla::Role::PluginBundle::Easy>.
+#
+# Configures the plugins of this bundle.
+#
+# =cut
 sub configure {
     my $self = shift;
 	
@@ -35,28 +59,31 @@ sub configure {
 		#
 		# Files included
 		#
-		['GatherDir' => {              # skip files on top level
+		['GatherDir' => {                 # skip files on top level
 			exclude_match => \@exclude_matches,
 		}],
-		'PruneCruft',                  # prune stuff you probably don't want
+		'PruneCruft',                     # prune stuff you probably don't want
 		
-		['ExecDir' => {                # install contents of bin/ as executable
+		['ExecDir' => {                   # install contents of bin/ as executable
 			dir => 'bin',
 		}],		
-		['ShareDir' => {               # include all files in /share
+		['ShareDir' => {                  # include all files in /share
 			dir => 'share',
 		}],
 		
 		#
 		# Conversion and replacements
 		#
-		'OurPkgVersion',               # replaces "# VERSION" by "our $VERSION = '...';"
-		['NextRelease' => {            # replace {{$NEXT}} in "Changes" file with new version and date
-			format => '%-9v %{yyyy-MM-dd}d', #  (MUST be included before NextVersion::Semantic)
+		['PkgVersion' => {                # insert version number in first blank line
+			die_on_existing_version => 1,
+			die_on_line_insertion   => 1,
 		}],
-		'PreviousVersion::Changelog',  # fetch previous version from changelog
-		                               # alternatively run: V=0.00100 dzil release
-		['NextVersion::Semantic' => {  # generate next version based on type of changes
+		['NextRelease' => {               # replace {{$NEXT}} in "Changes" file with new version and
+			format => '%-9v %{yyyy-MM-dd}d', # date (MUST be included before NextVersion::Semantic)
+		}],
+		'PreviousVersion::Changelog',     # fetch previous version from changelog
+		                                  # alternatively run: V=0.00100 dzil release
+		['NextVersion::Semantic' => {     # generate next version based on type of changes
 			major => '*NEW FEATURES, *API CHANGES',
 			minor => '+ENHANCEMENTS',
 			revision => 'REVISION, BUG FIXES, DOCUMENTATION',
@@ -68,32 +95,35 @@ sub configure {
 		# weave your Pod together from configuration and Dist::Zilla
 		# (turns "# ABSTRACT" into POD, processes =method and short lists etc.)
 		# To exclude files from PodWeaver see: http://blogs.perl.org/users/polettix/2011/11/distzilla-podweaver-and-bin.html
-		'PodWeaver',
+		['PodWeaver' => {
+			config_plugin => '@Author::MAXHQ',
+			replacer      => 'replace_with_comment', # replace original POD with comments to preserve line numbering
+		}],
 
 		#
 		# Prerequisites
 		#
-		'AutoPrereqs',                 # extract prereqs from your modules
-		'Prereqs::AuthorDeps',         # "adds Dist::Zilla and the result of "dzil
-		                               # authordeps" to the 'develop' phase prerequisite list"
-		'PrereqsClean',                # "Cleans up mess from other Prereq modules"
-		['Prereqs::MatchInstalled::All' => { # adjust prereqs to use latest version available
+		'AutoPrereqs',                    # extract prereqs from your modules
+		'Prereqs::AuthorDeps',            # "adds Dist::Zilla and the result of "dzil
+		                                  # authordeps" to the 'develop' phase prerequisite list"
+		'PrereqsClean',                   # "Cleans up mess from other Prereq modules"
+		['Prereqs::MatchInstalled::All' => { # adjust prereqs to use same version as currently installed
 			exclude => [qw( strict warnings )]
 		}],
 		
 		#
 		# Auto generation --- distribution files
 		#
-		'ModuleBuild',                 # build a Build.PL that uses Module::Build to install the distribution
-		'MetaYAML',                    # generate META.yml
-		'Manifest',                    # generate Manifest (list of all files)
-		'License',                     # generate LICENSE
-		'ReadmeAnyFromPod',            # generate README (with dist's name, version, abstract, license)
+		'ModuleBuild',                    # build a Build.PL that uses Module::Build to install the distribution
+		'MetaYAML',                       # generate META.yml
+		'Manifest',                       # generate Manifest (list of all files)
+		'License',                        # generate LICENSE
+		'ReadmeAnyFromPod',               # generate README (with dist's name, version, abstract, license)
 
 		#
 		# Auto generation --- tests
 		#
-		'Test::Inline',                # generate .t files from inline test code (POD)
+		'Test::Inline',                   # generate .t files from inline test code (POD)
 		
 		# auto-generate various tests
 		'ExtraTests',
@@ -104,16 +134,15 @@ sub configure {
 		#
 		# Auto generation --- docs
 		#
-		['Pod2Html' => {               # generate HTML documentation
+		['Pod2Html' => {                  # generate HTML documentation
 			'dir' => 'doc',
 		}],
 
 		#
 		# Release
 		#
-		'TestRelease',                 # test before releasing
-		'ConfirmRelease',              # ask for confirmation before releasing
-		'Clean',                       # Like "dzil clean" after release
+		'TestRelease',                    # test before releasing
+		'ConfirmRelease',                 # ask for confirmation before releasing
     );
 }
  
@@ -127,25 +156,18 @@ __END__
 
 =head1 NAME
 
-Dist::Zilla::PluginBundle::Author::MAXHQ - Dist::Zilla like MAXHQ when you build your dists
+Dist::Zilla::PluginBundle::Author::MAXHQ - MAXHQ's default Dist::Zilla configuration
 
 =head1 VERSION
 
-version 0.012000
+version 1.000000
 
 =head1 SYNOPSIS
 
-	# dist.ini
+Put following into your C<dist.ini>:
+
 	[@Author::MAXHQ]
 	GatherDir.exclude_match = ^[^\/\.]+\.txt$
-
-=head1 EXTENDS
-
-=over 4
-
-=item * L<Moose::Object>
-
-=back
 
 =head1 METHODS
 

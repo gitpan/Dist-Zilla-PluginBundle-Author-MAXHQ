@@ -1,17 +1,15 @@
 NAME
-    Dist::Zilla::PluginBundle::Author::MAXHQ - Dist::Zilla like MAXHQ when
-    you build your dists
+    Dist::Zilla::PluginBundle::Author::MAXHQ - MAXHQ's default Dist::Zilla
+    configuration
 
 VERSION
-    version 0.012000
+    version 1.000000
 
 SYNOPSIS
-            # dist.ini
+    Put following into your "dist.ini":
+
             [@Author::MAXHQ]
             GatherDir.exclude_match = ^[^\/\.]+\.txt$
-
-EXTENDS
-    *   Moose::Object
 
 METHODS
   mvp_multivalue_args
