@@ -18,7 +18,7 @@ my %module_build_args = (
     "Jens Berthold <jens.berthold\@jebecs.de>"
   ],
   "dist_name" => "Dist-Zilla-PluginBundle-Author-MAXHQ",
-  "dist_version" => "1.000000",
+  "dist_version" => "1.000001",
   "license" => "perl",
   "module_name" => "Dist::Zilla::PluginBundle::Author::MAXHQ",
   "recommends" => {},

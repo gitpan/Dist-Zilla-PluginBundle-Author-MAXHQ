@@ -1,10 +1,14 @@
 Revision history for perl module Dist::Zilla::PluginBundle::Author::MAXHQ
 
+1.000001 2014-02-28
+ [REVISION]
+ - corrected Change file
+
 1.000000 2014-02-28
  [*NEW FEATURES]
- - new Pod::Weaver plugin bundle @MAXHQ
- - include Pod::Weaver plugin bundle @MAXHQ in Dist::Zilla plugin bundle
-   @MAXHQ
+ - new Pod::Weaver plugin bundle @Author::MAXHQ
+ - include Pod::Weaver plugin bundle @Author::MAXHQ in Dist::Zilla plugin
+   bundle @Author::MAXHQ
 
  [REVISION]
  - Removed unneccessary "use Getopt::Long"

@@ -1,7 +1,7 @@
 use strict;
 package Pod::Weaver::PluginBundle::Author::MAXHQ;
 # ABSTRACT: MAXHQ's default Pod::Weaver configuration
-$Pod::Weaver::PluginBundle::Author::MAXHQ::VERSION = '1.000000';
+$Pod::Weaver::PluginBundle::Author::MAXHQ::VERSION = '1.000001';
 # =head1 SYNOPSIS
 #
 # Put the following into your C<weaver.ini>:
@@ -134,7 +134,7 @@ Pod::Weaver::PluginBundle::Author::MAXHQ - MAXHQ's default Pod::Weaver configura
 
 =head1 VERSION
 
-version 1.000000
+version 1.000001
 
 =head1 SYNOPSIS
 
