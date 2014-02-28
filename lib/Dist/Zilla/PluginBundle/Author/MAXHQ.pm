@@ -1,7 +1,7 @@
 use strict;
 package Dist::Zilla::PluginBundle::Author::MAXHQ;
 # ABSTRACT: MAXHQ's default Dist::Zilla configuration
-$Dist::Zilla::PluginBundle::Author::MAXHQ::VERSION = '1.000001';
+$Dist::Zilla::PluginBundle::Author::MAXHQ::VERSION = '1.000002';
 # =encoding UTF-8
 #  
 # =head1 SYNOPSIS
@@ -160,7 +160,7 @@ Dist::Zilla::PluginBundle::Author::MAXHQ - MAXHQ's default Dist::Zilla configura
 
 =head1 VERSION
 
-version 1.000001
+version 1.000002
 
 =head1 SYNOPSIS
 
