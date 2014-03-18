@@ -45,4 +45,4 @@ requires:
   Moose: 2.1005
   Pod::Weaver::Config::Assembler: 4.006
   perl: v5.8.8
-version: 1.000002
+version: 1.000003

@@ -1,5 +1,9 @@
 Revision history for perl module Dist::Zilla::PluginBundle::Author::MAXHQ
 
+1.000003 2014-03-18
+ [REVISION]
+ - use	versioning convention x.yyyzzz instead of x.y.z
+
 1.000002 2014-02-28
  [REVISION]
  - corrected Change file

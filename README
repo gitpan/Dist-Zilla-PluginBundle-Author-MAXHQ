@@ -3,7 +3,7 @@ NAME
     configuration
 
 VERSION
-    version 1.000002
+    version 1.000003
 
 SYNOPSIS
     Put following into your "dist.ini":

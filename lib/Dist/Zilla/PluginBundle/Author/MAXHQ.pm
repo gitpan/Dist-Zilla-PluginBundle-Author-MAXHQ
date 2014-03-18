@@ -1,7 +1,7 @@
 use strict;
 package Dist::Zilla::PluginBundle::Author::MAXHQ;
 # ABSTRACT: MAXHQ's default Dist::Zilla configuration
-$Dist::Zilla::PluginBundle::Author::MAXHQ::VERSION = '1.000002';
+$Dist::Zilla::PluginBundle::Author::MAXHQ::VERSION = '1.000003';
 # =encoding UTF-8
 #  
 # =head1 SYNOPSIS
@@ -87,6 +87,7 @@ sub configure {
 			major => '*NEW FEATURES, *API CHANGES',
 			minor => '+ENHANCEMENTS',
 			revision => 'REVISION, BUG FIXES, DOCUMENTATION',
+			numify_version => 1,          # use x.yyyzzz convention instead of x.y.z
 		}],
 		# Please note that * and ! are mainly there to enforce correct ordering
 		# as CPAN::Changes::Release (used in NextVersion::Semantic) just sorts
@@ -160,7 +161,7 @@ Dist::Zilla::PluginBundle::Author::MAXHQ - MAXHQ's default Dist::Zilla configura
 
 =head1 VERSION
 
-version 1.000002
+version 1.000003
 
 =head1 SYNOPSIS
 
