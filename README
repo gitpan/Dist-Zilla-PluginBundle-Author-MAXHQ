@@ -3,7 +3,7 @@ NAME
     configuration
 
 VERSION
-    version 1.000003
+    version 1.000004
 
 SYNOPSIS
     Put following into your "dist.ini":
@@ -11,18 +11,78 @@ SYNOPSIS
             [@Author::MAXHQ]
             GatherDir.exclude_match = ^[^\/\.]+\.txt$
 
-METHODS
-  mvp_multivalue_args
-    "If you want a configuration option that takes more than one value,
-    you'll need to mark it as multivalue arg by having its name returned by
-    "mvp_multivalue_args"."
+OVERVIEW
+    Currently this plugin bundle is equivalent to:
 
-    Queried by Dist::Zilla.
+            #
+            # Files included
+            #
+            [GatherDir]
+            [PruneCruft]
+            [ExecDir]
+            dir = bin
+        
+            [ShareDir]
+            dir = share
+        
+            #
+            # Conversion and replacements
+            #
+            [PkgVersion]
+            die_on_existing_version = 1
+            die_on_line_insertion   = 1
+        
+            [NextRelease]
+            format => '%-9v %{yyyy-MM-dd}d'
+        
+            [PreviousVersion::Changelog]
+            [NextVersion::Semantic]
+            major = *NEW FEATURES, *API CHANGES
+            minor = +ENHANCEMENTS
+            revision = REVISION, BUG FIXES, DOCUMENTATION
+            numify_version => 1
 
-  configure
-    Required by role Dist::Zilla::Role::PluginBundle::Easy.
+            [PodWeaver]
+            config_plugin = @Author::MAXHQ
+            replacer      = replace_with_comment
 
-    Configures the plugins of this bundle.
+            #
+            # Prerequisites
+            #
+            [AutoPrereqs]
+            [Prereqs::AuthorDeps]
+            [PrereqsClean]
+            [Prereqs::MatchInstalled::All]
+            exclude = strict
+            exclude = warnings
+
+            #
+            # Auto generation --- distribution files
+            #
+            [ModuleBuild]
+            [MetaYAML]
+            [Manifest]
+            [License]
+            [ReadmeAnyFromPod]
+
+            #
+            # Auto generation --- tests
+            #
+            [Test::Inline]
+            [ExtraTests]
+            [Test::Perl::Critic]
+            [PodCoverageTests]
+            [PodSyntaxTests]
+
+            #
+            # Auto generation --- docs
+            #
+            [Pod2Html]
+            dir = doc
+
+            # Release
+            [TestRelease]
+            [ConfirmRelease]
 
 AUTHOR
     Jens Berthold <jens.berthold@jebecs.de>

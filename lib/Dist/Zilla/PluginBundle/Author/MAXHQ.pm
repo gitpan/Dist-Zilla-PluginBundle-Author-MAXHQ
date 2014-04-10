@@ -1,7 +1,7 @@
 use strict;
 package Dist::Zilla::PluginBundle::Author::MAXHQ;
 # ABSTRACT: MAXHQ's default Dist::Zilla configuration
-$Dist::Zilla::PluginBundle::Author::MAXHQ::VERSION = '1.000003';
+$Dist::Zilla::PluginBundle::Author::MAXHQ::VERSION = '1.000004';
 # =encoding UTF-8
 #  
 # =head1 SYNOPSIS
@@ -10,6 +10,80 @@ $Dist::Zilla::PluginBundle::Author::MAXHQ::VERSION = '1.000003';
 #
 # 	[@Author::MAXHQ]
 # 	GatherDir.exclude_match = ^[^\/\.]+\.txt$
+#
+# =head1 OVERVIEW
+#
+# Currently this plugin bundle is equivalent to:
+# 	
+# 	#
+# 	# Files included
+# 	#
+# 	[GatherDir]
+# 	[PruneCruft]
+# 	[ExecDir]
+# 	dir = bin
+# 	
+# 	[ShareDir]
+# 	dir = share
+# 	
+# 	#
+# 	# Conversion and replacements
+# 	#
+# 	[PkgVersion]
+# 	die_on_existing_version = 1
+# 	die_on_line_insertion   = 1
+# 	
+# 	[NextRelease]
+# 	format => '%-9v %{yyyy-MM-dd}d'
+# 	
+# 	[PreviousVersion::Changelog]
+# 	[NextVersion::Semantic]
+# 	major = *NEW FEATURES, *API CHANGES
+# 	minor = +ENHANCEMENTS
+# 	revision = REVISION, BUG FIXES, DOCUMENTATION
+# 	numify_version => 1
+#
+# 	[PodWeaver]
+# 	config_plugin = @Author::MAXHQ
+# 	replacer      = replace_with_comment
+#
+# 	#
+# 	# Prerequisites
+# 	#
+# 	[AutoPrereqs]
+# 	[Prereqs::AuthorDeps]
+# 	[PrereqsClean]
+# 	[Prereqs::MatchInstalled::All]
+# 	exclude = strict
+# 	exclude = warnings
+#
+# 	#
+# 	# Auto generation --- distribution files
+# 	#
+# 	[ModuleBuild]
+# 	[MetaYAML]
+# 	[Manifest]
+# 	[License]
+# 	[ReadmeAnyFromPod]
+#
+# 	#
+# 	# Auto generation --- tests
+# 	#
+# 	[Test::Inline]
+# 	[ExtraTests]
+# 	[Test::Perl::Critic]
+# 	[PodCoverageTests]
+# 	[PodSyntaxTests]
+#
+# 	#
+# 	# Auto generation --- docs
+# 	#
+# 	[Pod2Html]
+# 	dir = doc
+#
+# 	# Release
+# 	[TestRelease]
+# 	[ConfirmRelease]
 #
 # =cut 
 
@@ -22,24 +96,26 @@ with 'Dist::Zilla::Role::PluginBundle::Easy';
 # (requires setting "bundledeps_phase = runtime" in this module's dist.ini)
 with 'Dist::Zilla::Role::BundleDeps';
 
-# =method mvp_multivalue_args
-#
-# "If you want a configuration option that takes more than one value, you'll need
-# to mark it as multivalue arg by having its name returned by
-# C<mvp_multivalue_args>."
-#
-# Queried by L<Dist::Zilla>.
+# =for Pod::Coverage mvp_multivalue_args
 #
 # =cut
+#
+#"If you want a configuration option that takes more than one value, you'll need
+#to mark it as multivalue arg by having its name returned by
+#C<mvp_multivalue_args>."
+#
+#Queried by L<Dist::Zilla>.
+#
 sub mvp_multivalue_args { return qw(GatherDir.exclude_match) }
 
-# =method configure
-#
-# Required by role L<Dist::Zilla::Role::PluginBundle::Easy>.
-#
-# Configures the plugins of this bundle.
+# =for Pod::Coverage configure
 #
 # =cut
+#
+#Required by role L<Dist::Zilla::Role::PluginBundle::Easy>.
+#
+#Configures the plugins of this bundle.
+#
 sub configure {
     my $self = shift;
 	
@@ -161,7 +237,7 @@ Dist::Zilla::PluginBundle::Author::MAXHQ - MAXHQ's default Dist::Zilla configura
 
 =head1 VERSION
 
-version 1.000003
+version 1.000004
 
 =head1 SYNOPSIS
 
@@ -170,23 +246,85 @@ Put following into your C<dist.ini>:
 	[@Author::MAXHQ]
 	GatherDir.exclude_match = ^[^\/\.]+\.txt$
 
-=head1 METHODS
+=head1 OVERVIEW
 
-=head2 mvp_multivalue_args
+Currently this plugin bundle is equivalent to:
 
-"If you want a configuration option that takes more than one value, you'll need
-to mark it as multivalue arg by having its name returned by
-C<mvp_multivalue_args>."
+	#
+	# Files included
+	#
+	[GatherDir]
+	[PruneCruft]
+	[ExecDir]
+	dir = bin
+	
+	[ShareDir]
+	dir = share
+	
+	#
+	# Conversion and replacements
+	#
+	[PkgVersion]
+	die_on_existing_version = 1
+	die_on_line_insertion   = 1
+	
+	[NextRelease]
+	format => '%-9v %{yyyy-MM-dd}d'
+	
+	[PreviousVersion::Changelog]
+	[NextVersion::Semantic]
+	major = *NEW FEATURES, *API CHANGES
+	minor = +ENHANCEMENTS
+	revision = REVISION, BUG FIXES, DOCUMENTATION
+	numify_version => 1
 
-Queried by L<Dist::Zilla>.
+	[PodWeaver]
+	config_plugin = @Author::MAXHQ
+	replacer      = replace_with_comment
 
-=head2 configure
+	#
+	# Prerequisites
+	#
+	[AutoPrereqs]
+	[Prereqs::AuthorDeps]
+	[PrereqsClean]
+	[Prereqs::MatchInstalled::All]
+	exclude = strict
+	exclude = warnings
 
-Required by role L<Dist::Zilla::Role::PluginBundle::Easy>.
+	#
+	# Auto generation --- distribution files
+	#
+	[ModuleBuild]
+	[MetaYAML]
+	[Manifest]
+	[License]
+	[ReadmeAnyFromPod]
 
-Configures the plugins of this bundle.
+	#
+	# Auto generation --- tests
+	#
+	[Test::Inline]
+	[ExtraTests]
+	[Test::Perl::Critic]
+	[PodCoverageTests]
+	[PodSyntaxTests]
+
+	#
+	# Auto generation --- docs
+	#
+	[Pod2Html]
+	dir = doc
+
+	# Release
+	[TestRelease]
+	[ConfirmRelease]
 
 =encoding UTF-8
+
+=for Pod::Coverage mvp_multivalue_args
+
+=for Pod::Coverage configure
 
 =head1 AUTHOR
 

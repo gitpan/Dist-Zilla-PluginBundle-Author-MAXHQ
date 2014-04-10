@@ -1,7 +1,7 @@
 use strict;
 package Pod::Weaver::PluginBundle::Author::MAXHQ;
 # ABSTRACT: MAXHQ's default Pod::Weaver configuration
-$Pod::Weaver::PluginBundle::Author::MAXHQ::VERSION = '1.000003';
+$Pod::Weaver::PluginBundle::Author::MAXHQ::VERSION = '1.000004';
 # Thanks to
 # - Joshua Keroes (http://rjbs.manxome.org/rubric/entry/1809)
 # - rjbs (http://de.slideshare.net/jkeroes/getting-started-with-podweaver)
@@ -14,7 +14,7 @@ $Pod::Weaver::PluginBundle::Author::MAXHQ::VERSION = '1.000003';
 #
 # =head1 OVERVIEW
 #
-# Currently (2014-02-28) this plugin bundle is equivalent to:
+# Currently this plugin bundle is equivalent to:
 #
 # 	[@CorePrep]
 # 	
@@ -81,21 +81,21 @@ $Pod::Weaver::PluginBundle::Author::MAXHQ::VERSION = '1.000003';
 use Pod::Weaver::Config::Assembler;
 sub _exp { Pod::Weaver::Config::Assembler->expand_package($_[0]) }
 
-# =method mvp_bundle_config
-#
-# Returns my C<Pod::Weaver> plugin configuration. Based on 
-# L<Pod::Weaver::PluginBundle::RJBS>.
-#
-# The return format is a list of ArrayRefs, where each ArrayRef looks like:
-#
-# 	[$name, $package, $payload]
-# 	
-# (Described in L<Config::MVP::Assembler::WithBundles/replace_bundle_with_contents>)
-#
-# This method is called by L<Pod::Weaver>, or more specific by
-# L<Config::MVP::Assembler::WithBundles/replace_bundle_with_contents>.
+# =for Pod::Coverage mvp_bundle_config
 #
 # =cut
+#
+#Returns my C<Pod::Weaver> plugin configuration. Based on 
+#L<Pod::Weaver::PluginBundle::RJBS>.
+#
+#The return format is a list of ArrayRefs, where each ArrayRef looks like:
+#
+#	[$name, $package, $payload]
+#	
+#(Described in L<Config::MVP::Assembler::WithBundles/replace_bundle_with_contents>)
+#
+#This method is called by L<Pod::Weaver>, or more specific by
+#L<Config::MVP::Assembler::WithBundles/replace_bundle_with_contents>.
 sub mvp_bundle_config {
 	return (
 		[ '@MAXHQ/CorePrep',       _exp('@CorePrep'),        {} ],
@@ -138,7 +138,7 @@ Pod::Weaver::PluginBundle::Author::MAXHQ - MAXHQ's default Pod::Weaver configura
 
 =head1 VERSION
 
-version 1.000003
+version 1.000004
 
 =head1 SYNOPSIS
 
@@ -148,7 +148,7 @@ Put the following into your C<weaver.ini>:
 
 =head1 OVERVIEW
 
-Currently (2014-02-28) this plugin bundle is equivalent to:
+Currently this plugin bundle is equivalent to:
 
 	[@CorePrep]
 	
@@ -210,21 +210,7 @@ Currently (2014-02-28) this plugin bundle is equivalent to:
 	[-Transformer]
 	transformer = List
 
-=head1 METHODS
-
-=head2 mvp_bundle_config
-
-Returns my C<Pod::Weaver> plugin configuration. Based on 
-L<Pod::Weaver::PluginBundle::RJBS>.
-
-The return format is a list of ArrayRefs, where each ArrayRef looks like:
-
-	[$name, $package, $payload]
-
-(Described in L<Config::MVP::Assembler::WithBundles/replace_bundle_with_contents>)
-
-This method is called by L<Pod::Weaver>, or more specific by
-L<Config::MVP::Assembler::WithBundles/replace_bundle_with_contents>.
+=for Pod::Coverage mvp_bundle_config
 
 =head1 AUTHOR
 
