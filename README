@@ -3,7 +3,7 @@ NAME
     configuration
 
 VERSION
-    version 1.000004
+    version 1.000005
 
 SYNOPSIS
     Put following into your "dist.ini":
@@ -33,14 +33,14 @@ OVERVIEW
             die_on_line_insertion   = 1
         
             [NextRelease]
-            format => '%-9v %{yyyy-MM-dd}d'
+            format = '%-9v %{yyyy-MM-dd}d'
         
             [PreviousVersion::Changelog]
             [NextVersion::Semantic]
             major = *NEW FEATURES, *API CHANGES
             minor = +ENHANCEMENTS
             revision = REVISION, BUG FIXES, DOCUMENTATION
-            numify_version => 1
+            numify_version = 1
 
             [PodWeaver]
             config_plugin = @Author::MAXHQ

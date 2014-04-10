@@ -1,7 +1,7 @@
 use strict;
 package Dist::Zilla::PluginBundle::Author::MAXHQ;
 # ABSTRACT: MAXHQ's default Dist::Zilla configuration
-$Dist::Zilla::PluginBundle::Author::MAXHQ::VERSION = '1.000004';
+$Dist::Zilla::PluginBundle::Author::MAXHQ::VERSION = '1.000005';
 # =encoding UTF-8
 #  
 # =head1 SYNOPSIS
@@ -34,14 +34,14 @@ $Dist::Zilla::PluginBundle::Author::MAXHQ::VERSION = '1.000004';
 # 	die_on_line_insertion   = 1
 # 	
 # 	[NextRelease]
-# 	format => '%-9v %{yyyy-MM-dd}d'
+# 	format = '%-9v %{yyyy-MM-dd}d'
 # 	
 # 	[PreviousVersion::Changelog]
 # 	[NextVersion::Semantic]
 # 	major = *NEW FEATURES, *API CHANGES
 # 	minor = +ENHANCEMENTS
 # 	revision = REVISION, BUG FIXES, DOCUMENTATION
-# 	numify_version => 1
+# 	numify_version = 1
 #
 # 	[PodWeaver]
 # 	config_plugin = @Author::MAXHQ
@@ -237,7 +237,7 @@ Dist::Zilla::PluginBundle::Author::MAXHQ - MAXHQ's default Dist::Zilla configura
 
 =head1 VERSION
 
-version 1.000004
+version 1.000005
 
 =head1 SYNOPSIS
 
@@ -269,14 +269,14 @@ Currently this plugin bundle is equivalent to:
 	die_on_line_insertion   = 1
 	
 	[NextRelease]
-	format => '%-9v %{yyyy-MM-dd}d'
+	format = '%-9v %{yyyy-MM-dd}d'
 	
 	[PreviousVersion::Changelog]
 	[NextVersion::Semantic]
 	major = *NEW FEATURES, *API CHANGES
 	minor = +ENHANCEMENTS
 	revision = REVISION, BUG FIXES, DOCUMENTATION
-	numify_version => 1
+	numify_version = 1
 
 	[PodWeaver]
 	config_plugin = @Author::MAXHQ

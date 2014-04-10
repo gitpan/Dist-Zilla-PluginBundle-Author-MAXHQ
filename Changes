@@ -1,5 +1,9 @@
 Revision history for perl module Dist::Zilla::PluginBundle::Author::MAXHQ
 
+1.000005 2014-04-10
+ [DOCUMENTATION]
+ - fixed small typo
+
 1.000004 2014-04-10
  [DOCUMENTATION]
  - added equivalent dist.ini content
@@ -7,7 +11,7 @@ Revision history for perl module Dist::Zilla::PluginBundle::Author::MAXHQ
 
 1.000003 2014-03-18
  [REVISION]
- - use	   versioning convention x.yyyzzz instead of x.y.z
+ - use versioning convention x.yyyzzz instead of x.y.z
 
 1.000002 2014-02-28
  [REVISION]
