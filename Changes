@@ -1,5 +1,9 @@
 Revision history for perl module Dist::Zilla::PluginBundle::Author::MAXHQ
 
+1.000006 2014-08-04
+ [BUG FIXES]
+ - moved "no Moose" before __PACKAGE__->meta->make_immutable
+
 1.000005 2014-04-10
  [DOCUMENTATION]
  - fixed small typo

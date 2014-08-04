@@ -1,91 +1,91 @@
 use strict;
 package Dist::Zilla::PluginBundle::Author::MAXHQ;
 # ABSTRACT: MAXHQ's default Dist::Zilla configuration
-$Dist::Zilla::PluginBundle::Author::MAXHQ::VERSION = '1.000005';
-# =encoding UTF-8
-#  
-# =head1 SYNOPSIS
-#  
-# Put following into your C<dist.ini>:
-#
-# 	[@Author::MAXHQ]
-# 	GatherDir.exclude_match = ^[^\/\.]+\.txt$
-#
-# =head1 OVERVIEW
-#
-# Currently this plugin bundle is equivalent to:
-# 	
-# 	#
-# 	# Files included
-# 	#
-# 	[GatherDir]
-# 	[PruneCruft]
-# 	[ExecDir]
-# 	dir = bin
-# 	
-# 	[ShareDir]
-# 	dir = share
-# 	
-# 	#
-# 	# Conversion and replacements
-# 	#
-# 	[PkgVersion]
-# 	die_on_existing_version = 1
-# 	die_on_line_insertion   = 1
-# 	
-# 	[NextRelease]
-# 	format = '%-9v %{yyyy-MM-dd}d'
-# 	
-# 	[PreviousVersion::Changelog]
-# 	[NextVersion::Semantic]
-# 	major = *NEW FEATURES, *API CHANGES
-# 	minor = +ENHANCEMENTS
-# 	revision = REVISION, BUG FIXES, DOCUMENTATION
-# 	numify_version = 1
-#
-# 	[PodWeaver]
-# 	config_plugin = @Author::MAXHQ
-# 	replacer      = replace_with_comment
-#
-# 	#
-# 	# Prerequisites
-# 	#
-# 	[AutoPrereqs]
-# 	[Prereqs::AuthorDeps]
-# 	[PrereqsClean]
-# 	[Prereqs::MatchInstalled::All]
-# 	exclude = strict
-# 	exclude = warnings
-#
-# 	#
-# 	# Auto generation --- distribution files
-# 	#
-# 	[ModuleBuild]
-# 	[MetaYAML]
-# 	[Manifest]
-# 	[License]
-# 	[ReadmeAnyFromPod]
-#
-# 	#
-# 	# Auto generation --- tests
-# 	#
-# 	[Test::Inline]
-# 	[ExtraTests]
-# 	[Test::Perl::Critic]
-# 	[PodCoverageTests]
-# 	[PodSyntaxTests]
-#
-# 	#
-# 	# Auto generation --- docs
-# 	#
-# 	[Pod2Html]
-# 	dir = doc
-#
-# 	# Release
-# 	[TestRelease]
-# 	[ConfirmRelease]
-#
-# =cut 
+$Dist::Zilla::PluginBundle::Author::MAXHQ::VERSION = '1.000006';
+#pod =encoding UTF-8
+#pod  
+#pod =head1 SYNOPSIS
+#pod  
+#pod Put following into your C<dist.ini>:
+#pod
+#pod 	[@Author::MAXHQ]
+#pod 	GatherDir.exclude_match = ^[^\/\.]+\.txt$
+#pod
+#pod =head1 OVERVIEW
+#pod
+#pod Currently this plugin bundle is equivalent to:
+#pod 	
+#pod 	#
+#pod 	# Files included
+#pod 	#
+#pod 	[GatherDir]
+#pod 	[PruneCruft]
+#pod 	[ExecDir]
+#pod 	dir = bin
+#pod 	
+#pod 	[ShareDir]
+#pod 	dir = share
+#pod 	
+#pod 	#
+#pod 	# Conversion and replacements
+#pod 	#
+#pod 	[PkgVersion]
+#pod 	die_on_existing_version = 1
+#pod 	die_on_line_insertion   = 1
+#pod 	
+#pod 	[NextRelease]
+#pod 	format = '%-9v %{yyyy-MM-dd}d'
+#pod 	
+#pod 	[PreviousVersion::Changelog]
+#pod 	[NextVersion::Semantic]
+#pod 	major = *NEW FEATURES, *API CHANGES
+#pod 	minor = +ENHANCEMENTS
+#pod 	revision = REVISION, BUG FIXES, DOCUMENTATION
+#pod 	numify_version = 1
+#pod
+#pod 	[PodWeaver]
+#pod 	config_plugin = @Author::MAXHQ
+#pod 	replacer      = replace_with_comment
+#pod
+#pod 	#
+#pod 	# Prerequisites
+#pod 	#
+#pod 	[AutoPrereqs]
+#pod 	[Prereqs::AuthorDeps]
+#pod 	[PrereqsClean]
+#pod 	[Prereqs::MatchInstalled::All]
+#pod 	exclude = strict
+#pod 	exclude = warnings
+#pod
+#pod 	#
+#pod 	# Auto generation --- distribution files
+#pod 	#
+#pod 	[ModuleBuild]
+#pod 	[MetaYAML]
+#pod 	[Manifest]
+#pod 	[License]
+#pod 	[ReadmeAnyFromPod]
+#pod
+#pod 	#
+#pod 	# Auto generation --- tests
+#pod 	#
+#pod 	[Test::Inline]
+#pod 	[ExtraTests]
+#pod 	[Test::Perl::Critic]
+#pod 	[PodCoverageTests]
+#pod 	[PodSyntaxTests]
+#pod
+#pod 	#
+#pod 	# Auto generation --- docs
+#pod 	#
+#pod 	[Pod2Html]
+#pod 	dir = doc
+#pod
+#pod 	# Release
+#pod 	[TestRelease]
+#pod 	[ConfirmRelease]
+#pod
+#pod =cut 
 
 use Moose;
 
@@ -96,9 +96,9 @@ with 'Dist::Zilla::Role::PluginBundle::Easy';
 # (requires setting "bundledeps_phase = runtime" in this module's dist.ini)
 with 'Dist::Zilla::Role::BundleDeps';
 
-# =for Pod::Coverage mvp_multivalue_args
-#
-# =cut
+#pod =for Pod::Coverage mvp_multivalue_args
+#pod
+#pod =cut
 #
 #"If you want a configuration option that takes more than one value, you'll need
 #to mark it as multivalue arg by having its name returned by
@@ -108,9 +108,9 @@ with 'Dist::Zilla::Role::BundleDeps';
 #
 sub mvp_multivalue_args { return qw(GatherDir.exclude_match) }
 
-# =for Pod::Coverage configure
-#
-# =cut
+#pod =for Pod::Coverage configure
+#pod
+#pod =cut
 #
 #Required by role L<Dist::Zilla::Role::PluginBundle::Easy>.
 #
@@ -223,9 +223,8 @@ sub configure {
     );
 }
  
-__PACKAGE__->meta->make_immutable;
 no Moose;
-1;
+__PACKAGE__->meta->make_immutable;
 
 __END__
 
@@ -237,7 +236,7 @@ Dist::Zilla::PluginBundle::Author::MAXHQ - MAXHQ's default Dist::Zilla configura
 
 =head1 VERSION
 
-version 1.000005
+version 1.000006
 
 =head1 SYNOPSIS
 

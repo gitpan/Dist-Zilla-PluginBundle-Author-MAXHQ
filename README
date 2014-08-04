@@ -1,17 +1,21 @@
 NAME
+
     Dist::Zilla::PluginBundle::Author::MAXHQ - MAXHQ's default Dist::Zilla
     configuration
 
 VERSION
-    version 1.000005
+
+    version 1.000006
 
 SYNOPSIS
-    Put following into your "dist.ini":
+
+    Put following into your dist.ini:
 
             [@Author::MAXHQ]
             GatherDir.exclude_match = ^[^\/\.]+\.txt$
 
 OVERVIEW
+
     Currently this plugin bundle is equivalent to:
 
             #
@@ -21,31 +25,31 @@ OVERVIEW
             [PruneCruft]
             [ExecDir]
             dir = bin
-        
+            
             [ShareDir]
             dir = share
-        
+            
             #
             # Conversion and replacements
             #
             [PkgVersion]
             die_on_existing_version = 1
             die_on_line_insertion   = 1
-        
+            
             [NextRelease]
             format = '%-9v %{yyyy-MM-dd}d'
-        
+            
             [PreviousVersion::Changelog]
             [NextVersion::Semantic]
             major = *NEW FEATURES, *API CHANGES
             minor = +ENHANCEMENTS
             revision = REVISION, BUG FIXES, DOCUMENTATION
             numify_version = 1
-
+    
             [PodWeaver]
             config_plugin = @Author::MAXHQ
             replacer      = replace_with_comment
-
+    
             #
             # Prerequisites
             #
@@ -55,7 +59,7 @@ OVERVIEW
             [Prereqs::MatchInstalled::All]
             exclude = strict
             exclude = warnings
-
+    
             #
             # Auto generation --- distribution files
             #
@@ -64,7 +68,7 @@ OVERVIEW
             [Manifest]
             [License]
             [ReadmeAnyFromPod]
-
+    
             #
             # Auto generation --- tests
             #
@@ -73,21 +77,23 @@ OVERVIEW
             [Test::Perl::Critic]
             [PodCoverageTests]
             [PodSyntaxTests]
-
+    
             #
             # Auto generation --- docs
             #
             [Pod2Html]
             dir = doc
-
+    
             # Release
             [TestRelease]
             [ConfirmRelease]
 
 AUTHOR
+
     Jens Berthold <jens.berthold@jebecs.de>
 
 COPYRIGHT AND LICENSE
+
     This software is copyright (c) 2014 by Jens Berthold.
 
     This is free software; you can redistribute it and/or modify it under

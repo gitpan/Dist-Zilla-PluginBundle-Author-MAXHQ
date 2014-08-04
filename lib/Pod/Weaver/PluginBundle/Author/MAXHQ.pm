@@ -1,89 +1,89 @@
 use strict;
 package Pod::Weaver::PluginBundle::Author::MAXHQ;
 # ABSTRACT: MAXHQ's default Pod::Weaver configuration
-$Pod::Weaver::PluginBundle::Author::MAXHQ::VERSION = '1.000005';
+$Pod::Weaver::PluginBundle::Author::MAXHQ::VERSION = '1.000006';
 # Thanks to
 # - Joshua Keroes (http://rjbs.manxome.org/rubric/entry/1809)
 # - rjbs (http://de.slideshare.net/jkeroes/getting-started-with-podweaver)
 
-# =head1 SYNOPSIS
-#
-# Put the following into your C<weaver.ini>:
-#
-# 	[@Author::MAXHQ]
-#
-# =head1 OVERVIEW
-#
-# Currently this plugin bundle is equivalent to:
-#
-# 	[@CorePrep]
-# 	
-# 	[Name]
-# 	[Version]
-# 	
-# 	;#
-# 	;# prelude
-# 	;#
-# 	[Region  / prelude]
-# 	
-# 	[Generic / SYNOPSIS]
-# 	[Generic / DESCRIPTION]
-# 	[Generic / OVERVIEW]
-# 	
-# 	[Extends]
-# 	
-# 	;#
-# 	;# functions etc.
-# 	;#
-# 	[Collect / ATTRIBUTES]
-# 	command = attr
-#
-# 	[Collect / REQUIRED METHODS]
-# 	command = requires
-# 	
-# 	[Collect / CLASS METHODS]
-# 	command = class_method
-# 	
-# 	[Collect / METHODS]
-# 	command = method
-# 	
-# 	[Collect / MOJOLICIOUS PLUGINS]
-# 	command = mojo_plugin
-# 	
-# 	[Collect / MOJOLICIOUS SHORTCUTS]
-# 	command = mojo_short
-# 	
-# 	[Collect / MOJOLICIOUS CONDITIONS]
-# 	command = mojo_cond
-# 	
-# 	[Collect / MOJOLICIOUS HELPERS]
-# 	command = mojo_helper
-# 	
-# 	
-# 	[Leftovers]
-# 	
-# 	;#
-# 	;# postlude
-# 	;#
-# 	[Region  / postlude]
-# 	
-# 	[Authors]
-# 	[Legal]
-# 	
-# 	;#
-# 	;# plugins
-# 	;#
-# 	[-Transformer]
-# 	transformer = List
-#
-# =cut
+#pod =head1 SYNOPSIS
+#pod
+#pod Put the following into your C<weaver.ini>:
+#pod
+#pod 	[@Author::MAXHQ]
+#pod
+#pod =head1 OVERVIEW
+#pod
+#pod Currently this plugin bundle is equivalent to:
+#pod
+#pod 	[@CorePrep]
+#pod 	
+#pod 	[Name]
+#pod 	[Version]
+#pod 	
+#pod 	;#
+#pod 	;# prelude
+#pod 	;#
+#pod 	[Region  / prelude]
+#pod 	
+#pod 	[Generic / SYNOPSIS]
+#pod 	[Generic / DESCRIPTION]
+#pod 	[Generic / OVERVIEW]
+#pod 	
+#pod 	[Extends]
+#pod 	
+#pod 	;#
+#pod 	;# functions etc.
+#pod 	;#
+#pod 	[Collect / ATTRIBUTES]
+#pod 	command = attr
+#pod
+#pod 	[Collect / REQUIRED METHODS]
+#pod 	command = requires
+#pod 	
+#pod 	[Collect / CLASS METHODS]
+#pod 	command = class_method
+#pod 	
+#pod 	[Collect / METHODS]
+#pod 	command = method
+#pod 	
+#pod 	[Collect / MOJOLICIOUS PLUGINS]
+#pod 	command = mojo_plugin
+#pod 	
+#pod 	[Collect / MOJOLICIOUS SHORTCUTS]
+#pod 	command = mojo_short
+#pod 	
+#pod 	[Collect / MOJOLICIOUS CONDITIONS]
+#pod 	command = mojo_cond
+#pod 	
+#pod 	[Collect / MOJOLICIOUS HELPERS]
+#pod 	command = mojo_helper
+#pod 	
+#pod 	
+#pod 	[Leftovers]
+#pod 	
+#pod 	;#
+#pod 	;# postlude
+#pod 	;#
+#pod 	[Region  / postlude]
+#pod 	
+#pod 	[Authors]
+#pod 	[Legal]
+#pod 	
+#pod 	;#
+#pod 	;# plugins
+#pod 	;#
+#pod 	[-Transformer]
+#pod 	transformer = List
+#pod
+#pod =cut
 
 use Pod::Weaver::Config::Assembler;
 sub _exp { Pod::Weaver::Config::Assembler->expand_package($_[0]) }
 
-# =for Pod::Coverage mvp_bundle_config
-#
-# =cut
+#pod =for Pod::Coverage mvp_bundle_config
+#pod
+#pod =cut
 #
 #Returns my C<Pod::Weaver> plugin configuration. Based on 
 #L<Pod::Weaver::PluginBundle::RJBS>.
@@ -138,7 +138,7 @@ Pod::Weaver::PluginBundle::Author::MAXHQ - MAXHQ's default Pod::Weaver configura
 
 =head1 VERSION
 
-version 1.000005
+version 1.000006
 
 =head1 SYNOPSIS
 
